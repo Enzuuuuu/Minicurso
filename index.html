@@ -369,6 +369,14 @@
 
     let index = 0;
 
+    function formatarFeedback(text) {
+      return String(text || "")
+        .replace(/&lt;br\s*\/?&gt;/gi, "\n")
+        .replace(/<br\s*\/?>/gi, "\n")
+        .replace(/\n{3,}/g, "\n\n")
+        .trim();
+    }
+
     totalEl.textContent = String(slides.length).padStart(2, "0");
 
     slides.forEach((slide, i) => {
@@ -473,7 +481,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email })
         });
-        const text = (await response.text()).trim();
+        const text = formatarFeedback(await response.text());
         inviteStatus.textContent = response.ok ? (text || "Convite enviado.") : `Falha: ${text || response.status}`;
       } catch {
         inviteStatus.textContent = "Não foi possível conectar ao n8n.";

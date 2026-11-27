@@ -282,7 +282,7 @@ kbd {
 .invite-form input { flex: 1; min-width: 220px; min-height: 44px; padding: 0 12px; border: 1px solid var(--muted); background: #fff; color: var(--ink); font: inherit; font-size: 0.92rem; }
 .invite-form button { min-height: 44px; padding: 0 18px; border: 0; background: var(--pink); color: #fff; font: inherit; font-weight: 750; cursor: pointer; }
 .invite-form button:hover { background: var(--pink-deep); }
-.invite-status { min-height: 1.2em; color: var(--pink-deep); font-family: var(--mono); font-size: 0.8rem; line-height: 1.5; }
+.invite-status { min-height: 1.2em; color: var(--pink-deep); font-family: var(--mono); font-size: 0.8rem; line-height: 1.5; white-space: pre-line; }
 .panel-title { margin-bottom: 12px; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pink-deep); }
 .field-list { border-top: 1px solid var(--ink); }
 .field-list li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 0.82rem; }
