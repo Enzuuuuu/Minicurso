@@ -29,7 +29,7 @@
       </div>
       <p class="deck-topic">Automações de processos com ferramentas de low code</p>
       <div class="deck-tools">
-        <span class="deck-counter" aria-hidden="true"><strong id="current">01</strong><span>/</span><span id="total">12</span></span>
+        <span class="deck-counter" aria-hidden="true"><strong id="current">01</strong><span>/</span><span id="total">13</span></span>
         <button class="bar-button" id="fullscreen" type="button" aria-label="Entrar em tela cheia" aria-pressed="false">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
             <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>
@@ -63,7 +63,7 @@
               </g>
               <circle cx="16" cy="16" r="5" fill="#ffd23f"/>
             </svg>
-            <span class="cover-index">01 — 12</span>
+            <span class="cover-index">01 — 13</span>
           </div>
         </div>
         <p class="slide-foot">Pressione <kbd>→</kbd> para começar</p>
@@ -308,10 +308,24 @@
         </div>
       </section>
 
-      <section class="slide slide--end" id="slide-12" data-title="Encerramento" aria-labelledby="s12-title" hidden>
+      <section class="slide" id="slide-12" data-title="Convites n8n" aria-labelledby="s12-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">10 / Convites</p>
+          <h2 id="s12-title" style="--i: 1">Convide pessoas para o <span translate="no">n8n</span></h2>
+          <p class="lead" style="--i: 2">Informe um e-mail. O workflow cria o convite na API do <span translate="no">n8n</span> e envia o link de aceite por Gmail.</p>
+          <form id="invite-form" class="invite-form" data-webhook="http://localhost:5678/webhook/convites-n8n" style="--i: 3">
+            <label for="invite-email">E-mail</label>
+            <input id="invite-email" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com" required>
+            <button type="submit">Enviar convite</button>
+          </form>
+          <p id="invite-status" class="invite-status" role="status" aria-live="polite" style="--i: 4"></p>
+          <p class="aside" style="--i: 5">O formulário faz um POST JSON para <code translate="no">/webhook/convites-n8n</code>. No GitHub Pages, substitua <code translate="no">localhost:5678</code> pela URL pública do seu <span translate="no">n8n</span>.</p>
+        </div>
+      </section>
+      <section class="slide slide--end" id="slide-13" data-title="Encerramento" aria-labelledby="s13-title" hidden>
         <div class="slide-inner stagger">
           <p class="kicker" style="--i: 0">Fim</p>
-          <h2 id="s12-title" style="--i: 1">Obrigado<span class="dot">.</span></h2>
+          <h2 id="s13-title" style="--i: 1">Obrigado<span class="dot">.</span></h2>
           <p class="lead" style="--i: 2">Agora é escolher um processo repetitivo, mapear entradas, decisões e saídas, e montar o primeiro fluxo.</p>
           <div class="resources" style="--i: 3">
             <a href="materiais/README.md">README.md</a>
@@ -349,6 +363,9 @@
     const nextButton = document.getElementById("next");
     const fullscreenButton = document.getElementById("fullscreen");
     const announcer = document.getElementById("announcer");
+    const inviteForm = document.getElementById("invite-form");
+    const inviteEmail = document.getElementById("invite-email");
+    const inviteStatus = document.getElementById("invite-status");
 
     let index = 0;
 
@@ -444,6 +461,24 @@
       if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) goTo(index + (dx < 0 ? 1 : -1));
       touchStart = null;
     }, { passive: true });
+
+    inviteForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const email = inviteEmail.value.trim();
+      if (!email) return;
+      inviteStatus.textContent = "Enviando convite...";
+      try {
+        const response = await fetch(inviteForm.dataset.webhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+        const text = (await response.text()).trim();
+        inviteStatus.textContent = response.ok ? (text || "Convite enviado.") : `Falha: ${text || response.status}`;
+      } catch {
+        inviteStatus.textContent = "Não foi possível conectar ao n8n.";
+      }
+    });
 
     fullscreenButton.addEventListener("click", async () => {
       try {
