@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minicurso - Enviar solicitação</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; line-height: 1.5; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 18px; margin-top: 28px; }
+    a { color: #1a5fb4; }
+    ol, ul { padding-left: 22px; }
+    li { margin-top: 8px; }
+    code, pre { background: #f4f4f4; }
+    code { padding: 2px 5px; }
+    pre { padding: 12px; white-space: pre-wrap; word-break: break-word; }
+    .link { display: inline-block; margin: 12px 0; padding: 10px 16px; background: #1a5fb4; color: #fff; text-decoration: none; border-radius: 4px; }
+    .aviso { background: #fff8dc; border-left: 4px solid #d9a400; padding: 10px 14px; }
+  </style>
+</head>
+<body>
+  <h1>Minicurso - Enviar solicitação</h1>
+
+  <p>
+    Este é o exemplo final do minicurso: um formulário nativo do n8n recebe a solicitação,
+    a IA redige a resposta e o Gmail envia o e-mail automaticamente para quem preencheu.
+  </p>
+
+  <p>
+    <a class="link" href="http://localhost:5678/form/central-atendimento">Abrir formulário local</a>
+  </p>
+
+  <p class="aviso">
+    Se você subiu o n8n com o script <code>iniciar-n8n.ps1</code>, use a URL temporária salva em
+    <code>url-n8n.txt</code> no lugar de <code>http://localhost:5678</code>. O caminho continua sendo
+    <code>/form/central-atendimento</code>.
+  </p>
+
+  <h2>Passo a passo</h2>
+  <ol>
+    <li>Abra o link do formulário.</li>
+    <li>Escolha o <strong>Setor responsável</strong>: TI, Financeiro, Administrativo, Comercial ou Triagem manual.</li>
+    <li>Preencha nome, e-mail, assunto e mensagem. O identificador é opcional.</li>
+    <li>Clique em <strong>Enviar solicitação</strong>.</li>
+    <li>Confirme o recebimento da resposta no e-mail informado.</li>
+  </ol>
+
+  <h2>O que acontece depois do envio</h2>
+  <ul>
+    <li>Os dados são validados e uma consulta evita duplicidade pelo identificador.</li>
+    <li>O Gemini redige apenas o assunto e o corpo da resposta; o setor vem do formulário.</li>
+    <li>A solicitação é gravada na Data Table <code>central_atendimento_v1</code>.</li>
+    <li>O e-mail é enviado ao solicitante e, em seguida, a equipe recebe uma notificação interna.</li>
+  </ul>
+
+  <h2>Exemplo de preenchimento</h2>
+  <pre>{
+  "setor": "TI",
+  "nome": "Maria Silva",
+  "email": "maria@example.com",
+  "assunto": "Erro ao acessar o sistema",
+  "mensagem": "Não consigo entrar desde ontem.",
+  "identificador": "SOL-2026-0001"
+}</pre>
+
+  <h2>Se algo não funcionar</h2>
+  <ul>
+    <li><strong>Problem loading form</strong>: confirme que o workflow está ativo e que o caminho está em <code>options.path</code>.</li>
+    <li><strong>Página não abre</strong>: o túnel muda a cada execução; copie a nova URL de <code>url-n8n.txt</code>.</li>
+    <li><strong>E-mail não chegou</strong>: verifique spam e o endereço digitado no formulário.</li>
+  </ul>
+
+  <p>
+    O tutorial completo está em <code>TUTORIAL_FORMULARIO.md</code>, nesta mesma pasta.
+  </p>
+</body>
+</html>

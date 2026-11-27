@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3ed">
+  <meta name="description" content="Apresentação do minicurso de automações de processos com n8n.">
+  <title>Apresentação | Automações de processos com n8n</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#deck">Ir para o slide atual</a>
+
+  <div class="deck-shell">
+    <header class="deck-bar">
+      <div class="deck-id">
+        <svg class="mark" width="26" height="26" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <g fill="#ff3d81">
+            <circle cx="16" cy="6" r="4"/>
+            <circle cx="24.7" cy="11" r="4"/>
+            <circle cx="24.7" cy="21" r="4"/>
+            <circle cx="16" cy="26" r="4"/>
+            <circle cx="7.3" cy="21" r="4"/>
+            <circle cx="7.3" cy="11" r="4"/>
+          </g>
+          <circle cx="16" cy="16" r="5" fill="#17121c"/>
+        </svg>
+        <span>Minicurso <span aria-hidden="true">/</span> <span translate="no">n8n</span></span>
+      </div>
+      <p class="deck-topic">Automações de processos com ferramentas de low code</p>
+      <div class="deck-tools">
+        <span class="deck-counter" aria-hidden="true"><strong id="current">01</strong><span>/</span><span id="total">12</span></span>
+        <button class="bar-button" id="fullscreen" type="button" aria-label="Entrar em tela cheia" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+            <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="progress" aria-label="Progresso da apresentação">
+      <ol id="dots"></ol>
+    </nav>
+
+    <main class="deck" id="deck" tabindex="-1">
+      <section class="slide slide--cover is-active" id="slide-1" data-title="Capa" aria-labelledby="s1-title">
+        <div class="slide-inner cover-grid stagger">
+          <div class="cover-copy" style="--i: 0">
+            <p class="kicker">Minicurso <span aria-hidden="true">·</span> Low code <span aria-hidden="true">·</span> <span translate="no">n8n</span></p>
+            <h1 id="s1-title">Automações de <span class="highlight">processos</span> com&nbsp;<span translate="no">n8n</span></h1>
+            <p class="lead">Do mapeamento do processo ao primeiro workflow funcional, sem precisar programar.</p>
+            <p class="cover-meta">Qualquer área de atuação <span aria-hidden="true">·</span> Material livre para uso educacional</p>
+          </div>
+          <div class="cover-aside" style="--i: 1" aria-hidden="true">
+            <svg class="cover-mark" width="224" height="224" viewBox="0 0 32 32" focusable="false">
+              <g fill="#ff3d81">
+                <circle cx="16" cy="6" r="4"/>
+                <circle cx="24.7" cy="11" r="4"/>
+                <circle cx="24.7" cy="21" r="4"/>
+                <circle cx="16" cy="26" r="4"/>
+                <circle cx="7.3" cy="21" r="4"/>
+                <circle cx="7.3" cy="11" r="4"/>
+              </g>
+              <circle cx="16" cy="16" r="5" fill="#ffd23f"/>
+            </svg>
+            <span class="cover-index">01 — 12</span>
+          </div>
+        </div>
+        <p class="slide-foot">Pressione <kbd>→</kbd> para começar</p>
+      </section>
+
+      <section class="slide" id="slide-2" data-title="Enviar solicitação" aria-labelledby="s2-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">Acesso rápido / Formulário</p>
+          <h2 id="s2-title" style="--i: 1">Enviar solicitação pelo formulário</h2>
+          <p class="lead" style="--i: 2">Abra o formulário nativo do <span translate="no">n8n</span>, escolha o setor e preencha os campos. O envio é confirmado na hora e a resposta chega por e-mail.</p>
+          <div class="form-cta" style="--i: 3">
+            <a class="cta-primary" href="http://localhost:5678/form/central-atendimento">Abrir formulário local</a>
+            <span class="cta-note">Com o túnel, use <code translate="no">&lt;URL de url-n8n.txt&gt;/form/central-atendimento</code>. O workflow precisa estar ativo; o formulário é público.</span>
+          </div>
+          <div class="example-grid" style="--i: 4">
+            <div>
+              <h3 class="panel-title">Campos do formulário</h3>
+              <ul class="field-list">
+                <li><span>Setor responsável</span><span>Obrigatório</span></li>
+                <li><span>Nome</span><span>Obrigatório</span></li>
+                <li><span>E-mail</span><span>Obrigatório</span></li>
+                <li><span>Assunto</span><span>Obrigatório</span></li>
+                <li><span>Mensagem</span><span>Obrigatório</span></li>
+                <li><span>Identificador</span><span>Opcional</span></li>
+              </ul>
+              <p class="form-hint">Setores: <code translate="no">TI</code>, <code translate="no">Financeiro</code>, <code translate="no">Administrativo</code>, <code translate="no">Comercial</code> ou <code translate="no">Triagem manual</code>.</p>
+            </div>
+            <div>
+              <h3 class="panel-title">Passo a passo</h3>
+              <ol class="mini-steps">
+                <li><span class="n">1</span><span>Abra o link do formulário.</span></li>
+                <li><span class="n">2</span><span>Escolha o setor responsável.</span></li>
+                <li><span class="n">3</span><span>Preencha nome, e-mail, assunto e mensagem.</span></li>
+                <li><span class="n">4</span><span>Clique em <strong>Enviar solicitação</strong>.</span></li>
+                <li><span class="n">5</span><span>Confirme a resposta no e-mail informado.</span></li>
+              </ol>
+              <pre class="json-sample"><code translate="no">{
+  "setor": "TI",
+  "nome": "Maria Silva",
+  "email": "maria@example.com",
+  "assunto": "Erro ao acessar o sistema",
+  "mensagem": "Não consigo entrar desde ontem.",
+  "identificador": "SOL-2026-0001"
+}</code></pre>
+            </div>
+          </div>
+          <p class="aside" style="--i: 5">Confirmação: “Solicitação recebida. Você receberá a resposta por e-mail em breve.” Não existe mais página externa com POST nem webhook público: o envio acontece direto no formulário do <span translate="no">n8n</span>.</p>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-3" data-title="Gestão de processos" aria-labelledby="s3-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">01 / Conceito</p>
+          <h2 id="s3-title" style="--i: 1">Gestão de processos sem complicação</h2>
+          <p class="lead" style="--i: 2">Processo é uma sequência de atividades que transforma uma entrada em um resultado.</p>
+          <div class="steps-three" style="--i: 3">
+            <article class="step">
+              <span class="step-n">01</span>
+              <h3>Entrada</h3>
+              <p>Aluno pede uma declaração à secretaria.</p>
+            </article>
+            <article class="step">
+              <span class="step-n">02</span>
+              <h3>Atividades</h3>
+              <p>A secretaria confere, aprova e emite o documento.</p>
+            </article>
+            <article class="step">
+              <span class="step-n">03</span>
+              <h3>Resultado</h3>
+              <p>Declaração entregue ao aluno.</p>
+            </article>
+          </div>
+          <p class="aside" style="--i: 4">Todo mundo participa de processos todos os dias. Gerir é só tornar isso visível e melhorável.</p>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-4" data-title="Por que automatizar" aria-labelledby="s4-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">02 / Motivação</p>
+          <h2 id="s4-title" style="--i: 1">Por que automatizar?</h2>
+          <p class="lead" style="--i: 2">Se o processo é repetitivo e segue regras claras, uma ferramenta pode executá-lo por você.</p>
+          <div class="reason-list" style="--i: 3">
+            <div class="reason"><span class="reason-n">01</span><div><h3>Menos retrabalho</h3><p>Copiar dados entre sistemas deixa de ser tarefa manual.</p></div></div>
+            <div class="reason"><span class="reason-n">02</span><div><h3>Menos erros</h3><p>O fluxo segue sempre as mesmas regras, sem esquecimentos.</p></div></div>
+            <div class="reason"><span class="reason-n">03</span><div><h3>Mais tempo</h3><p>Sobra espaço para análise e decisões, que só pessoas fazem.</p></div></div>
+          </div>
+          <p class="aside aside--yellow" style="--i: 4"><strong>Low code:</strong> monte o fluxo arrastando blocos, com pouco ou nenhum código.</p>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-5" data-title="O que é o n8n" aria-labelledby="s5-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">03 / Ferramenta</p>
+          <h2 id="s5-title" style="--i: 1">O que é o <span translate="no">n8n</span>?</h2>
+          <p class="lead" style="--i: 2">Uma plataforma de automação de fluxos de trabalho que conecta aplicativos e serviços de forma visual. Nuvem ou self-hosted, conforme a sua necessidade.</p>
+          <div class="trait-grid" style="--i: 3">
+            <article class="trait"><span class="trait-tag">Visual</span><p>Blocos conectados em uma tela, sem montar código do zero.</p></article>
+            <article class="trait"><span class="trait-tag">Integrações</span><p>Centenas de aplicativos e serviços prontos para conectar.</p></article>
+            <article class="trait"><span class="trait-tag">IA</span><p>Modelos de linguagem e agentes dentro dos fluxos.</p></article>
+            <article class="trait"><span class="trait-tag">Flexível</span><p>Nuvem ou instalação no seu computador e servidor.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-6" data-title="Como o n8n funciona" aria-labelledby="s6-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">04 / Estrutura</p>
+          <h2 id="s6-title" style="--i: 1">Como o <span translate="no">n8n</span> funciona</h2>
+          <p class="lead" style="--i: 2">Cada automação é um workflow: blocos, chamados nodes, ligados em sequência.</p>
+          <div class="flow-line" style="--i: 3">
+            <article class="flow-stop">
+              <h3>Gatilho</h3>
+              <p>Algo acontece: chega um e-mail ou um formulário é enviado.</p>
+            </article>
+            <article class="flow-stop">
+              <h3>Processar</h3>
+              <p>Filtrar, decidir, transformar dados ou usar IA.</p>
+            </article>
+            <article class="flow-stop">
+              <h3>Ação</h3>
+              <p>Enviar mensagem, preencher planilha ou criar uma tarefa.</p>
+            </article>
+          </div>
+          <dl class="glossary" style="--i: 4">
+            <div><dt>Workflow</dt><dd>a automação completa</dd></div>
+            <div><dt>Node</dt><dd>cada bloco do fluxo</dd></div>
+            <div><dt>Execução</dt><dd>cada vez que ele roda</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-7" data-title="Vamos pra prática" aria-labelledby="s7-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">05 / Primeiro fluxo</p>
+          <h2 id="s7-title" style="--i: 1">Vamos pra prática em 3 passos</h2>
+          <ol class="checklist" style="--i: 2">
+            <li><span class="check" aria-hidden="true"></span><div><h3>Escolher um processo</h3><p>Uma tarefa repetitiva do dia a dia, com regras claras.</p></div></li>
+            <li><span class="check" aria-hidden="true"></span><div><h3>Montar o workflow</h3><p>Gatilho, processamento e ação, conectando os blocos no <span translate="no">n8n</span>.</p></div></li>
+            <li><span class="check" aria-hidden="true"></span><div><h3>Testar e ativar</h3><p>Executar, conferir o resultado e deixar o fluxo rodando sozinho.</p></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-8" data-title="Exemplo final" aria-labelledby="s8-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">06 / Exemplo final</p>
+          <h2 id="s8-title" style="--i: 1">Central de Atendimento: da solicitação ao e-mail</h2>
+          <p class="lead" style="--i: 2">O Form Trigger nativo recebe a solicitação, a IA redige a resposta e o Gmail envia. O setor vem do formulário.</p>
+          <div class="example-grid" style="--i: 3">
+            <div>
+              <h3 class="panel-title">/form/central-atendimento</h3>
+              <ul class="field-list">
+                <li><span>Setor responsável</span><span>Obrigatório</span></li>
+                <li><span>Nome</span><span>Obrigatório</span></li>
+                <li><span>E-mail</span><span>Obrigatório</span></li>
+                <li><span>Assunto</span><span>Obrigatório</span></li>
+                <li><span>Mensagem</span><span>Obrigatório</span></li>
+                <li><span>Identificador</span><span>Opcional</span></li>
+              </ul>
+              <blockquote>“Solicitação recebida. Você receberá a resposta por e-mail em breve.”</blockquote>
+            </div>
+            <div>
+              <h3 class="panel-title">O que o workflow faz</h3>
+              <ol class="mini-steps">
+                <li><span class="n">1</span><span>Normalizar payload: limpa campos, gera ID e mascara e-mail e telefone.</span></li>
+                <li><span class="n">2</span><span>Validar campos obrigatórios.</span></li>
+                <li><span class="n">3</span><span>Verificar duplicidade na Data Table pelo identificador.</span></li>
+                <li><span class="n">4</span><span>Gemini redige <code translate="no">assunto_resposta</code> e <code translate="no">corpo_email</code>.</span></li>
+                <li><span class="n">5</span><span>Registrar em <code translate="no">central_atendimento_v1</code>.</span></li>
+                <li><span class="n">6</span><span>Enviar resposta ao solicitante.</span></li>
+                <li><span class="n">7</span><span>Notificar setor ou crítico internamente.</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-9" data-title="Suba o n8n" aria-labelledby="s9-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">07 / Execução</p>
+          <h2 id="s9-title" style="--i: 1">Suba o&nbsp;<span translate="no">n8n</span> em uma única execução</h2>
+          <div class="cmd" style="--i: 2">
+            <pre id="setup-command"><code translate="no">powershell -ExecutionPolicy Bypass -File .\iniciar-n8n.ps1</code></pre>
+            <button class="copy-button" id="copy-command" type="button" aria-label="Copiar comando do PowerShell">Copiar comando</button>
+            <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+          </div>
+          <ol class="compact-steps" style="--i: 3">
+            <li>Verifica ou inicia o Docker Desktop.</li>
+            <li>Instala o <span translate="no">cloudflared</span> se estiver ausente.</li>
+            <li>Abre um túnel temporário e captura a URL gerada.</li>
+            <li>Reinicia o <span translate="no">n8n</span> com host, protocolo e webhook compatíveis.</li>
+            <li>Copia a URL, salva em <code translate="no">url-n8n.txt</code> e abre o navegador.</li>
+            <li>Cria a conta <em>owner</em> na primeira vez.</li>
+          </ol>
+          <p class="aside" style="--i: 4">Sem cartão de crédito, sem domínio. A URL muda a cada execução: use sempre a atual de <code translate="no">url-n8n.txt</code>.</p>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-10" data-title="Opções e cuidados" aria-labelledby="s10-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">08 / Configuração</p>
+          <h2 id="s10-title" style="--i: 1">Opções e cuidados</h2>
+          <div class="option-grid" style="--i: 2">
+            <div class="option"><code translate="no">-SemNavegador</code><span>Não abre o navegador.</span></div>
+            <div class="option"><code translate="no">-NovaInstancia</code><span>Cria container isolado.</span></div>
+            <div class="option"><code translate="no">-Email seu@email.com</code><span>Protege a URL com login.</span></div>
+            <div class="option"><code translate="no">-Parar</code><span>Encerra túnel e container.</span></div>
+            <div class="option"><code translate="no">-Porta 5678</code><span>Porta local inicial.</span></div>
+            <div class="option"><code translate="no">-NomeContainer</code><span>Nome do container criado.</span></div>
+            <div class="option"><code translate="no">-Volume</code><span>Volume do container criado.</span></div>
+            <div class="option"><code translate="no">-ContainerExistente</code><span>Container a reaproveitar.</span></div>
+            <div class="option"><code translate="no">-VolumeExistente</code><span>Volume do container existente.</span></div>
+          </div>
+          <div class="warning" style="--i: 3">
+            <p>O script reaproveita <code translate="no">n8n</code> com <code translate="no">n8n_data</code> e preserva workflows e credenciais; sem container, cria <code translate="no">n8n-minicurso</code> com <code translate="no">n8n_minicurso_data</code>. Túnel rápido não tem SLA, suporta até 200 requisições simultâneas e não é para produção. Com <code translate="no">-Email</code>, webhooks externos param de funcionar.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-11" data-title="Problemas comuns" aria-labelledby="s11-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">09 / Diagnóstico</p>
+          <h2 id="s11-title" style="--i: 1">Se algo não funcionar</h2>
+          <div class="problem-grid" style="--i: 2">
+            <article class="problem">
+              <h3>Docker não iniciou</h3>
+              <p class="fix">Abra o Docker Desktop manualmente e rode o script novamente.</p>
+            </article>
+            <article class="problem">
+              <h3>Sem URL do túnel</h3>
+              <p class="fix">Verifique <code translate="no">.logs/cloudflared.err.log</code>: internet ou <span translate="no">cloudflared</span> desatualizado.</p>
+            </article>
+            <article class="problem">
+              <h3>Falha ao iniciar o container</h3>
+              <p class="fix">Outra aplicação está na porta. Rode com <code translate="no">-Porta 5679</code>.</p>
+            </article>
+            <article class="problem">
+              <h3>Página não carrega</h3>
+              <p class="fix">Aguarde alguns segundos; o <span translate="no">n8n</span> pode levar tempo após reiniciar.</p>
+            </article>
+            <article class="problem">
+              <h3>Problem loading form</h3>
+              <p class="fix">Confirme que o workflow está ativo e o caminho em <code translate="no">parameters.options.path</code>.</p>
+            </article>
+            <article class="problem">
+              <h3>E-mail não chegou</h3>
+              <p class="fix">Confira spam e o endereço digitado. Falha do Gmail marca <code translate="no">envio_resposta=pendente</code>.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide slide--end" id="slide-12" data-title="Encerramento" aria-labelledby="s12-title" hidden>
+        <div class="slide-inner stagger">
+          <p class="kicker" style="--i: 0">Fim</p>
+          <h2 id="s12-title" style="--i: 1">Obrigado<span class="dot">.</span></h2>
+          <p class="lead" style="--i: 2">Agora é escolher um processo repetitivo, mapear entradas, decisões e saídas, e montar o primeiro fluxo.</p>
+          <div class="resources" style="--i: 3">
+            <a href="README.md">README.md</a>
+            <a href="INSTRUCOES.md">INSTRUCOES.md</a>
+            <a href="TUTORIAL_FORMULARIO.md">TUTORIAL_FORMULARIO.md</a>
+            <a href="enviar-solicitacao.html">enviar-solicitacao.html</a>
+          </div>
+          <p class="cover-meta" style="--i: 4">Material livre para uso educacional <span aria-hidden="true">·</span> Pressione <kbd>←</kbd> para voltar</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="deck-controls">
+      <button class="nav-button" id="prev" type="button" aria-label="Slide anterior">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+        Anterior
+      </button>
+      <span class="hint">Use <kbd>←</kbd> <kbd>→</kbd> ou <kbd>espaço</kbd></span>
+      <button class="nav-button nav-button--primary" id="next" type="button" aria-label="Próximo slide">
+        Próximo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </footer>
+  </div>
+
+  <div class="sr-only" id="announcer" role="status" aria-live="polite"></div>
+
+  <script>
+    const deck = document.getElementById("deck");
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const dotsList = document.getElementById("dots");
+    const currentEl = document.getElementById("current");
+    const totalEl = document.getElementById("total");
+    const prevButton = document.getElementById("prev");
+    const nextButton = document.getElementById("next");
+    const fullscreenButton = document.getElementById("fullscreen");
+    const announcer = document.getElementById("announcer");
+    const copyButton = document.getElementById("copy-command");
+    const copyStatus = document.getElementById("copy-status");
+
+    let index = 0;
+
+    totalEl.textContent = String(slides.length).padStart(2, "0");
+
+    slides.forEach((slide, i) => {
+      const item = document.createElement("li");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.setAttribute("aria-label", `Ir para o slide ${i + 1}: ${slide.dataset.title}`);
+      button.addEventListener("click", () => goTo(i));
+      item.appendChild(button);
+      dotsList.appendChild(item);
+    });
+
+    const dots = Array.from(dotsList.querySelectorAll("button"));
+
+    function updateChrome() {
+      currentEl.textContent = String(index + 1).padStart(2, "0");
+      prevButton.disabled = index === 0;
+      nextButton.disabled = index === slides.length - 1;
+      dots.forEach((dot, i) => {
+        if (i === index) dot.setAttribute("aria-current", "step");
+        else dot.removeAttribute("aria-current");
+        dot.classList.toggle("is-done", i < index);
+      });
+    }
+
+    function goTo(next) {
+      const target = Math.max(0, Math.min(slides.length - 1, next));
+      if (target === index && slides[index].classList.contains("is-active")) return;
+
+      const direction = target > index ? 1 : -1;
+      deck.style.setProperty("--enter-offset", `${direction * 34}px`);
+      slides[index].classList.remove("is-active");
+      slides[index].hidden = true;
+      index = target;
+      slides[index].hidden = false;
+      slides[index].classList.add("is-active");
+
+      updateChrome();
+      announcer.textContent = `Slide ${index + 1} de ${slides.length}: ${slides[index].dataset.title}`;
+      history.replaceState(null, "", `#slide-${index + 1}`);
+    }
+
+    const initial = Number(location.hash.replace("#slide-", "")) - 1;
+    if (Number.isInteger(initial) && initial > 0 && initial < slides.length) {
+      slides[0].classList.remove("is-active");
+      slides[0].hidden = true;
+      index = initial;
+      slides[index].hidden = false;
+      slides[index].classList.add("is-active");
+    }
+
+    updateChrome();
+    announcer.textContent = `Slide ${index + 1} de ${slides.length}: ${slides[index].dataset.title}`;
+
+    prevButton.addEventListener("click", () => goTo(index - 1));
+    nextButton.addEventListener("click", () => goTo(index + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      const activeTag = document.activeElement ? document.activeElement.tagName : "";
+      if (activeTag === "INPUT" || activeTag === "TEXTAREA" || activeTag === "SELECT") return;
+      if ((event.key === " " || event.key === "Enter") && activeTag === "BUTTON") return;
+
+      if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        goTo(index + 1);
+      } else if (event.key === "ArrowLeft" || event.key === "ArrowUp" || event.key === "PageUp") {
+        event.preventDefault();
+        goTo(index - 1);
+      } else if (event.key === "Home") {
+        event.preventDefault();
+        goTo(0);
+      } else if (event.key === "End") {
+        event.preventDefault();
+        goTo(slides.length - 1);
+      }
+    });
+
+    let touchStart = null;
+    deck.addEventListener("touchstart", (event) => {
+      const touch = event.changedTouches[0];
+      touchStart = { x: touch.clientX, y: touch.clientY };
+    }, { passive: true });
+
+    deck.addEventListener("touchend", (event) => {
+      if (!touchStart) return;
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - touchStart.x;
+      const dy = touch.clientY - touchStart.y;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) goTo(index + (dx < 0 ? 1 : -1));
+      touchStart = null;
+    }, { passive: true });
+
+    fullscreenButton.addEventListener("click", async () => {
+      try {
+        if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+        else await document.exitFullscreen();
+      } catch {
+        announcer.textContent = "Tela cheia não disponível neste navegador.";
+      }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      const active = Boolean(document.fullscreenElement);
+      fullscreenButton.setAttribute("aria-pressed", String(active));
+      fullscreenButton.setAttribute("aria-label", active ? "Sair da tela cheia" : "Entrar em tela cheia");
+    });
+
+    copyButton.addEventListener("click", async () => {
+      const command = document.getElementById("setup-command").textContent.trim();
+      try {
+        await navigator.clipboard.writeText(command);
+        copyStatus.textContent = "Comando copiado.";
+      } catch {
+        copyStatus.textContent = "Copie o comando selecionando o texto acima.";
+      }
+    });
+  </script>
+</body>
+</html>
