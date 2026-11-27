@@ -55,6 +55,12 @@ Este é o fluxo de convites, não o de Central de Atendimento.
 7. **`Responder formulário`** (`respondToWebhook`) devolve `$json.mensagem` com status `200`.
    - Falha da API vai para `Montar erro da API` e também responde ao formulário.
 
+## Erro `request/body Expected array, received object`
+
+- Causa: o nó `Convidar usuários` foi salvo com `specifyBody: keypair` e um parâmetro vazio, então o n8n enviou um objeto em vez do array de convites.
+- Correção aplicada no workflow ativo e no template: `contentType: json`, `specifyBody: json` e `jsonBody: {{ $json.usuarios }}`.
+- Conferência rápida: `POST /api/v1/users` com `[{ "email": "invalido", "role": "global:member" }]` deve retornar `400 - {"message":"request/body/0/email Invalid email"}`, provando que o body chegou como array.
+
 ## Registro rápido no n8n
 
 - O gerador `create-convites.ps1` cria a variante com `Formulário de convites`, campos `emails` e `perfil` e caminho `/form/convites-n8n`. O workflow ativo no deck é a variante com Webhook `POST` e campo único `email`.
