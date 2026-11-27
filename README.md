@@ -49,7 +49,7 @@ O exemplo final usa o Form Trigger nativo do n8n. Com o n8n local na porta padr�
 http://localhost:5678/form/central-atendimento
 ```
 
-Se estiver usando o túnel criado por `iniciar-n8n.ps1`, substitua `http://localhost:5678` pela URL atual salva em `url-n8n.txt`.
+Em uma instância hospedada, substitua `http://localhost:5678` pelo endereço da sua instância.
 
 Materiais desta pasta:
 

@@ -10,10 +10,10 @@ Com o n8n local rodando na porta padrão, acesse:
 http://localhost:5678/form/central-atendimento
 ```
 
-Se você usou `iniciar-n8n.ps1`, pegue a URL temporária em `url-n8n.txt` e monte o endereço assim:
+Em uma instância hospedada, use o endereço da sua instância seguido de:
 
 ```text
-<URL do arquivo url-n8n.txt>/form/central-atendimento
+/form/central-atendimento
 ```
 
 Confirme que o workflow está ativo no n8n. O formulário é público e não pede login.
@@ -69,7 +69,7 @@ Não existe mais uma página externa com POST nem um Webhook público. O envio �
 ## 6. Problemas comuns
 
 - **Problem loading form**: o workflow pode estar inativo ou o caminho pode ter sido salvo no campo errado. No Form Trigger, o caminho fica em `parameters.options.path`.
-- **Página não abre**: com túnel temporário, a URL muda a cada execução. Use a URL atual de `url-n8n.txt`.
+- **Página não abre**: confirme o endereço da instância e se o workflow está ativo.
 - **E-mail não chegou**: confira o endereço digitado e a pasta de spam. Se a falha foi do Gmail, a execução marca `envio_resposta=pendente`.
 - **Duplicidade**: reenviar o mesmo identificador registra a duplicidade e não gera um segundo e-mail.
 

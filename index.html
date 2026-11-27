@@ -76,7 +76,7 @@
           <p class="lead" style="--i: 2">Abra o formulário nativo do <span translate="no">n8n</span>, escolha o setor e preencha os campos. O envio é confirmado na hora e a resposta chega por e-mail.</p>
           <div class="form-cta" style="--i: 3">
             <a class="cta-primary" href="http://localhost:5678/form/central-atendimento">Abrir formulário local</a>
-            <span class="cta-note">Com o túnel, use <code translate="no">&lt;URL de url-n8n.txt&gt;/form/central-atendimento</code>. O workflow precisa estar ativo; o formulário é público.</span>
+            <span class="cta-note">O workflow precisa estar ativo; o formulário é público. Em uma instância hospedada, troque <code translate="no">localhost:5678</code> pelo endereço da sua instância.</span>
           </div>
           <div class="example-grid" style="--i: 4">
             <div>
@@ -241,44 +241,36 @@
         </div>
       </section>
 
-      <section class="slide" id="slide-9" data-title="Suba o n8n" aria-labelledby="s9-title" hidden>
+      <section class="slide" id="slide-9" data-title="Preparar o ambiente" aria-labelledby="s9-title" hidden>
         <div class="slide-inner stagger">
           <p class="kicker" style="--i: 0">07 / Execução</p>
-          <h2 id="s9-title" style="--i: 1">Suba o&nbsp;<span translate="no">n8n</span> em uma única execução</h2>
-          <div class="cmd" style="--i: 2">
-            <pre id="setup-command"><code translate="no">powershell -ExecutionPolicy Bypass -File .\iniciar-n8n.ps1</code></pre>
-            <button class="copy-button" id="copy-command" type="button" aria-label="Copiar comando do PowerShell">Copiar comando</button>
-            <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
-          </div>
+          <h2 id="s9-title" style="--i: 1">Prepare o ambiente</h2>
+          <p class="lead" style="--i: 2">Use uma instância do <span translate="no">n8n</span> já disponível — local ou hospedada. O foco aqui é o desenho do fluxo, não a instalação.</p>
           <ol class="compact-steps" style="--i: 3">
-            <li>Verifica ou inicia o Docker Desktop.</li>
-            <li>Instala o <span translate="no">cloudflared</span> se estiver ausente.</li>
-            <li>Abre um túnel temporário e captura a URL gerada.</li>
-            <li>Reinicia o <span translate="no">n8n</span> com host, protocolo e webhook compatíveis.</li>
-            <li>Copia a URL, salva em <code translate="no">url-n8n.txt</code> e abre o navegador.</li>
-            <li>Cria a conta <em>owner</em> na primeira vez.</li>
+            <li>Entre no <span translate="no">n8n</span> com uma conta que possa criar workflows.</li>
+            <li>Crie um novo workflow chamado <code translate="no">Central de Atendimento - IA</code>.</li>
+            <li>Adicione o gatilho de formulário e publique o caminho <code translate="no">central-atendimento</code>.</li>
+            <li>Configure as credenciais do provedor de e-mail e do modelo de IA.</li>
+            <li>Ative o workflow e abra <code translate="no">/form/central-atendimento</code>.</li>
           </ol>
-          <p class="aside" style="--i: 4">Sem cartão de crédito, sem domínio. A URL muda a cada execução: use sempre a atual de <code translate="no">url-n8n.txt</code>.</p>
+          <p class="aside" style="--i: 4">Evite expor uma instância sem autenticação. Para testes, use dados fictícios; para produção, aplique as práticas oficiais de hospedagem do <span translate="no">n8n</span>.</p>
         </div>
       </section>
 
-      <section class="slide" id="slide-10" data-title="Opções e cuidados" aria-labelledby="s10-title" hidden>
+      <section class="slide" id="slide-10" data-title="Boas práticas" aria-labelledby="s10-title" hidden>
         <div class="slide-inner stagger">
           <p class="kicker" style="--i: 0">08 / Configuração</p>
-          <h2 id="s10-title" style="--i: 1">Opções e cuidados</h2>
+          <h2 id="s10-title" style="--i: 1">Boas práticas antes de ativar</h2>
           <div class="option-grid" style="--i: 2">
-            <div class="option"><code translate="no">-SemNavegador</code><span>Não abre o navegador.</span></div>
-            <div class="option"><code translate="no">-NovaInstancia</code><span>Cria container isolado.</span></div>
-            <div class="option"><code translate="no">-Email seu@email.com</code><span>Protege a URL com login.</span></div>
-            <div class="option"><code translate="no">-Parar</code><span>Encerra túnel e container.</span></div>
-            <div class="option"><code translate="no">-Porta 5678</code><span>Porta local inicial.</span></div>
-            <div class="option"><code translate="no">-NomeContainer</code><span>Nome do container criado.</span></div>
-            <div class="option"><code translate="no">-Volume</code><span>Volume do container criado.</span></div>
-            <div class="option"><code translate="no">-ContainerExistente</code><span>Container a reaproveitar.</span></div>
-            <div class="option"><code translate="no">-VolumeExistente</code><span>Volume do container existente.</span></div>
+            <div class="option"><code translate="no">/form/central-atendimento</code><span>Caminho público do formulário.</span></div>
+            <div class="option"><code translate="no">central_atendimento_v1</code><span>Nome da tabela de apoio.</span></div>
+            <div class="option"><code translate="no">assunto_resposta</code><span>Campo preenchido pela IA.</span></div>
+            <div class="option"><code translate="no">corpo_email</code><span>Texto da resposta ao solicitante.</span></div>
+            <div class="option"><code translate="no">envio_resposta=pendente</code><span>Marca falha no envio.</span></div>
+            <div class="option"><code translate="no">Triagem manual</code><span>Saída para casos sem setor definido.</span></div>
           </div>
           <div class="warning" style="--i: 3">
-            <p>O script reaproveita <code translate="no">n8n</code> com <code translate="no">n8n_data</code> e preserva workflows e credenciais; sem container, cria <code translate="no">n8n-minicurso</code> com <code translate="no">n8n_minicurso_data</code>. Túnel rápido não tem SLA, suporta até 200 requisições simultâneas e não é para produção. Com <code translate="no">-Email</code>, webhooks externos param de funcionar.</p>
+            <p>Mantenha o gatilho ativo, confira as condições do <span translate="no">Switch</span> por setor e proteja as credenciais. O formulário é público: não peça dados sensíveis neste exemplo didático.</p>
           </div>
         </div>
       </section>
@@ -289,28 +281,28 @@
           <h2 id="s11-title" style="--i: 1">Se algo não funcionar</h2>
           <div class="problem-grid" style="--i: 2">
             <article class="problem">
-              <h3>Docker não iniciou</h3>
-              <p class="fix">Abra o Docker Desktop manualmente e rode o script novamente.</p>
-            </article>
-            <article class="problem">
-              <h3>Sem URL do túnel</h3>
-              <p class="fix">Verifique <code translate="no">.logs/cloudflared.err.log</code>: internet ou <span translate="no">cloudflared</span> desatualizado.</p>
-            </article>
-            <article class="problem">
-              <h3>Falha ao iniciar o container</h3>
-              <p class="fix">Outra aplicação está na porta. Rode com <code translate="no">-Porta 5679</code>.</p>
-            </article>
-            <article class="problem">
-              <h3>Página não carrega</h3>
-              <p class="fix">Aguarde alguns segundos; o <span translate="no">n8n</span> pode levar tempo após reiniciar.</p>
-            </article>
-            <article class="problem">
-              <h3>Problem loading form</h3>
+              <h3>Formulário não abre</h3>
               <p class="fix">Confirme que o workflow está ativo e o caminho em <code translate="no">parameters.options.path</code>.</p>
             </article>
             <article class="problem">
               <h3>E-mail não chegou</h3>
               <p class="fix">Confira spam e o endereço digitado. Falha do Gmail marca <code translate="no">envio_resposta=pendente</code>.</p>
+            </article>
+            <article class="problem">
+              <h3>Setor errado</h3>
+              <p class="fix">Revise as condições do <span translate="no">Switch</span> e os aliases de cada setor.</p>
+            </article>
+            <article class="problem">
+              <h3>Resposta vaga</h3>
+              <p class="fix">Inclua mais contexto no prompt e valide os campos obrigatórios.</p>
+            </article>
+            <article class="problem">
+              <h3>Registro duplicado</h3>
+              <p class="fix">Desative gatilhos antigos e confira o identificador usado na consulta.</p>
+            </article>
+            <article class="problem">
+              <h3>Dados de teste</h3>
+              <p class="fix">Use e-mail fictício e limpe a tabela ao final da atividade.</p>
             </article>
           </div>
         </div>
@@ -323,7 +315,6 @@
           <p class="lead" style="--i: 2">Agora é escolher um processo repetitivo, mapear entradas, decisões e saídas, e montar o primeiro fluxo.</p>
           <div class="resources" style="--i: 3">
             <a href="README.md">README.md</a>
-            <a href="INSTRUCOES.md">INSTRUCOES.md</a>
             <a href="TUTORIAL_FORMULARIO.md">TUTORIAL_FORMULARIO.md</a>
             <a href="enviar-solicitacao.html">enviar-solicitacao.html</a>
           </div>
@@ -357,8 +348,6 @@
     const nextButton = document.getElementById("next");
     const fullscreenButton = document.getElementById("fullscreen");
     const announcer = document.getElementById("announcer");
-    const copyButton = document.getElementById("copy-command");
-    const copyStatus = document.getElementById("copy-status");
 
     let index = 0;
 
@@ -468,16 +457,6 @@
       const active = Boolean(document.fullscreenElement);
       fullscreenButton.setAttribute("aria-pressed", String(active));
       fullscreenButton.setAttribute("aria-label", active ? "Sair da tela cheia" : "Entrar em tela cheia");
-    });
-
-    copyButton.addEventListener("click", async () => {
-      const command = document.getElementById("setup-command").textContent.trim();
-      try {
-        await navigator.clipboard.writeText(command);
-        copyStatus.textContent = "Comando copiado.";
-      } catch {
-        copyStatus.textContent = "Copie o comando selecionando o texto acima.";
-      }
     });
   </script>
 </body>

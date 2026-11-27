@@ -31,9 +31,8 @@
   </p>
 
   <p class="aviso">
-    Se você subiu o n8n com o script <code>iniciar-n8n.ps1</code>, use a URL temporária salva em
-    <code>url-n8n.txt</code> no lugar de <code>http://localhost:5678</code>. O caminho continua sendo
-    <code>/form/central-atendimento</code>.
+    Em uma instância hospedada, substitua <code>http://localhost:5678</code> pelo endereço da sua
+    instância. O caminho continua sendo <code>/form/central-atendimento</code>.
   </p>
 
   <h2>Passo a passo</h2>
@@ -66,7 +65,7 @@
   <h2>Se algo não funcionar</h2>
   <ul>
     <li><strong>Problem loading form</strong>: confirme que o workflow está ativo e que o caminho está em <code>options.path</code>.</li>
-    <li><strong>Página não abre</strong>: o túnel muda a cada execução; copie a nova URL de <code>url-n8n.txt</code>.</li>
+    <li><strong>Página não abre</strong>: confirme o endereço da instância e se o workflow está ativo.</li>
     <li><strong>E-mail não chegou</strong>: verifique spam e o endereço digitado no formulário.</li>
   </ul>
 
